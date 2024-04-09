@@ -33,7 +33,15 @@
 
 					<div class="card-header text-center">
 						<p class="fs-3">All Expenses</p>
+
+						<c:if test="${not empty msg }">
+							<p class="text-center text-success fs-4">${msg}</p>
+							<c:remove var="msg" />
+						</c:if>
+
 					</div>
+
+
 					<div calss="card-body">
 
 						<table class="table">
@@ -59,13 +67,17 @@
 								%>
 
 								<tr>
-									<th scope="row"><%=ex.getTitle()%>1</th>
+									<th scope="row"><%=ex.getTitle()%></th>
 									<td><%=ex.getDescription()%></td>
 									<td><%=ex.getDate()%></td>
 									<td><%=ex.getTime()%></td>
 									<td><%=ex.getPrice()%></td>
-									<td><a href="#" class="btn btn-sm btn-primary me-1">Edit</a>
-										<a href="#" class="btn btn-sm btn-danger me-1">Delete</a></td>
+									<td><a href="edit_expense.jsp?id=<%=ex.getId()%>"
+										class="btn btn-sm btn-primary me-1">Edit</a> 
+										
+										
+										<a href="../deleteExpense?id=<%=ex.getId() %>"
+										class="btn btn-sm btn-danger me-1">Delete</a></td>
 								</tr>
 								<%
 								}
